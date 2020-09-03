@@ -5,11 +5,21 @@
  */
 package com.mycompany.continuada1;
 
+import java.awt.Color;
+import java.util.Random;
+import javax.swing.UIManager;
+
 /**
  *
  * @author Aluno
  */
 public class Monitoramento extends javax.swing.JFrame {
+
+    Double maximoCPU = 2.4, maximoMemoria = 7.9, maximoDisco = 466.0, valorMaximoCPU = 0.0, valorMaximoMemoria = 0.0, valorMaximoDisco = 0.0;
+    Double valorMinimoCPU = 0.0, valorMinimoMemoria = 0.0, valorMinimoDisco = 0.0, valorMediaCPU = 0.0, valorMediaMemoria = 0.0, valorMediaDisco = 0.0;
+    Double valorSomaCPU = 0.0, valorSomaMemoria = 0.0, valorSomaDisco = 0.0;
+    Random sortear = new Random();
+    Integer cliquesNoBotao = 0;
 
     /**
      * Creates new form Monitoramento
@@ -27,15 +37,58 @@ public class Monitoramento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel7 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
+        barCPU = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
+        barMemoria = new javax.swing.JProgressBar();
+        barDisco = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
-        jProgressBar2 = new javax.swing.JProgressBar();
-        jProgressBar3 = new javax.swing.JProgressBar();
-        jButton1 = new javax.swing.JButton();
+        btnLeitura = new javax.swing.JButton();
+        lblMaxCPU = new javax.swing.JLabel();
+        lblMinCPU = new javax.swing.JLabel();
+        lblMdCPU = new javax.swing.JLabel();
+        lblMaxCPUvalor = new javax.swing.JLabel();
+        lblMinCPUvalor = new javax.swing.JLabel();
+        lblMdCPUvalor = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        lblMdMemoria = new javax.swing.JLabel();
+        lblMaxMemoria = new javax.swing.JLabel();
+        lblMinMemoria = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        lblMdDisco = new javax.swing.JLabel();
+        lblMaxDisco = new javax.swing.JLabel();
+        lblMinDisco = new javax.swing.JLabel();
+
+        jLabel7.setText("Máximo:");
+
+        jLabel17.setText("Máximo:");
+
+        jLabel18.setText("Mínimo:");
+
+        jLabel19.setText("Média:");
+
+        jLabel20.setText("00GB");
+
+        jLabel21.setText(" 00GB");
+
+        jLabel22.setText("00GB");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
 
         jLabel1.setText("CPU");
 
@@ -43,59 +96,226 @@ public class Monitoramento extends javax.swing.JFrame {
 
         jLabel3.setText("Disco");
 
-        jButton1.setText("Fazer leitura dos dados");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnLeitura.setText("Fazer leitura dos dados");
+        btnLeitura.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnLeituraActionPerformed(evt);
             }
         });
+
+        lblMaxCPU.setText("Máximo:");
+
+        lblMinCPU.setText("Mínimo:");
+
+        lblMdCPU.setText("Média:");
+
+        lblMaxCPUvalor.setText(" 00GB");
+
+        lblMinCPUvalor.setText("00GB");
+
+        lblMdCPUvalor.setText("00GB");
+
+        jLabel11.setText("Máximo:");
+
+        jLabel12.setText("Mínimo:");
+
+        jLabel13.setText("Média:");
+
+        lblMdMemoria.setText("00GB");
+
+        lblMaxMemoria.setText(" 00GB");
+
+        lblMinMemoria.setText("00GB");
+
+        jLabel23.setText("Máximo:");
+
+        jLabel24.setText("Mínimo:");
+
+        jLabel25.setText("Média:");
+
+        lblMdDisco.setText("00GB");
+
+        lblMaxDisco.setText(" 00GB");
+
+        lblMinDisco.setText("00GB");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(lblMinCPUvalor)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnLeitura)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel3)
+                                .addComponent(barDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(barMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel2)
+                                .addComponent(barCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel1)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMaxCPU)
+                                    .addComponent(lblMdCPU)
+                                    .addComponent(lblMinCPU))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lblMaxCPUvalor)
+                                    .addComponent(lblMdCPUvalor, javax.swing.GroupLayout.Alignment.TRAILING)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(lblMinMemoria)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(lblMinDisco)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel23)
+                                                .addComponent(jLabel25)
+                                                .addComponent(jLabel24))
+                                            .addGap(18, 18, 18)
+                                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(lblMaxDisco)
+                                                .addComponent(lblMdDisco, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel11)
+                                            .addComponent(jLabel13)
+                                            .addComponent(jLabel12))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(lblMaxMemoria)
+                                            .addComponent(lblMdMemoria, javax.swing.GroupLayout.Alignment.TRAILING))))))))
+                .addContainerGap(33, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(barCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(lblMaxCPU)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblMinCPU)
+                                .addComponent(lblMinCPUvalor))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(lblMdCPU)
+                                .addComponent(lblMdCPUvalor))))
+                    .addComponent(lblMaxCPUvalor))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblMaxMemoria)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel11)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12)
+                                .addComponent(lblMinMemoria))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel13)
+                                .addComponent(lblMdMemoria)))))
+                .addGap(12, 12, 12)
+                .addComponent(jLabel3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(barDisco, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblMaxDisco)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel23)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel24)
+                            .addComponent(lblMinDisco))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel25)
+                            .addComponent(lblMdDisco))))
+                .addGap(18, 18, 18)
+                .addComponent(btnLeitura)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton1)
-                    .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(jLabel3)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(10, 10, 10)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(132, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2)
-                .addGap(2, 2, 2)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jProgressBar2, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1)
-                .addContainerGap(30, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeituraActionPerformed
+        Double sorteioCPU, sorteioMemoria, sorteioDisco;
+        cliquesNoBotao++;
+        sorteioCPU = sortear.nextDouble() * 3;
+        if (sorteioCPU > 2.4) {
+            sorteioCPU = 2.4;
+        }
+        System.out.println("Valor da CPU: " + sorteioCPU);
+
+        sorteioMemoria = sortear.nextDouble() * 8;
+
+        if (sorteioMemoria > 7.9) {
+            sorteioMemoria = 7.9;
+        }
+        System.out.println("Valor da Memoria: " + sorteioMemoria);
+
+        if (valorMaximoMemoria == 0.0) {
+            valorMaximoMemoria = sorteioMemoria;
+        } else {
+            if (sorteioMemoria > valorMaximoMemoria) {
+                valorMaximoMemoria = sorteioMemoria;
+            }
+        }
+        if (valorMinimoMemoria == 0.0) {
+            valorMinimoMemoria = sorteioMemoria;
+        } else {
+            if (sorteioMemoria < valorMinimoMemoria) {
+                if (sorteioMemoria == 0.0) {
+                    sorteioMemoria = 0.1;
+                }
+                valorMinimoMemoria = sorteioMemoria;
+            }
+        }
+        valorSomaMemoria +=sorteioMemoria;
+        valorMediaMemoria = valorSomaMemoria / cliquesNoBotao;
+        System.out.println("Valor maximo da memoria" + valorMaximoMemoria);
+        lblMaxMemoria.setText(String.format("%.1f GB", valorMaximoMemoria));
+        lblMinMemoria.setText(String.format("%.1f GB", valorMinimoMemoria));
+        System.out.println("Valor médio da memoria" + valorMediaMemoria);
+        lblMdMemoria.setText(String.format("%.1f GB", valorMediaMemoria));
+        Double porcentagem = (100.00 * sorteioMemoria / maximoMemoria);
+        System.out.println(String.format("Esse é a porcentagem: %f",porcentagem));
+        Integer porcentagemConvert = porcentagem.intValue();
+        barMemoria.setMinimum(0); 
+        barMemoria.setMaximum(100); 
+        barMemoria.setValue(porcentagemConvert);
+        UIManager.put("nimbusOrange", new Color(201, 30, 56));
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_btnLeituraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -133,12 +353,38 @@ public class Monitoramento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JProgressBar barCPU;
+    private javax.swing.JProgressBar barDisco;
+    private javax.swing.JProgressBar barMemoria;
+    private javax.swing.JButton btnLeitura;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JProgressBar jProgressBar1;
-    private javax.swing.JProgressBar jProgressBar2;
-    private javax.swing.JProgressBar jProgressBar3;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lblMaxCPU;
+    private javax.swing.JLabel lblMaxCPUvalor;
+    private javax.swing.JLabel lblMaxDisco;
+    private javax.swing.JLabel lblMaxMemoria;
+    private javax.swing.JLabel lblMdCPU;
+    private javax.swing.JLabel lblMdCPUvalor;
+    private javax.swing.JLabel lblMdDisco;
+    private javax.swing.JLabel lblMdMemoria;
+    private javax.swing.JLabel lblMinCPU;
+    private javax.swing.JLabel lblMinCPUvalor;
+    private javax.swing.JLabel lblMinDisco;
+    private javax.swing.JLabel lblMinMemoria;
     // End of variables declaration//GEN-END:variables
 }
