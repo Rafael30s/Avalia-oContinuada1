@@ -52,10 +52,10 @@ public class Monitoramento extends javax.swing.JFrame {
         barDisco = new javax.swing.JProgressBar();
         jLabel3 = new javax.swing.JLabel();
         btnLeitura = new javax.swing.JButton();
-        lblMaxCPU = new javax.swing.JLabel();
+        lblMaximoCPU = new javax.swing.JLabel();
         lblMinCPU = new javax.swing.JLabel();
         lblMdCPU = new javax.swing.JLabel();
-        lblMaxCPUvalor = new javax.swing.JLabel();
+        lblMaxCPU = new javax.swing.JLabel();
         lblMinCPUvalor = new javax.swing.JLabel();
         lblMdCPUvalor = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -103,13 +103,13 @@ public class Monitoramento extends javax.swing.JFrame {
             }
         });
 
-        lblMaxCPU.setText("Máximo:");
+        lblMaximoCPU.setText("Máximo:");
 
         lblMinCPU.setText("Mínimo:");
 
         lblMdCPU.setText("Média:");
 
-        lblMaxCPUvalor.setText(" 00GB");
+        lblMaxCPU.setText(" 00GB");
 
         lblMinCPUvalor.setText("00GB");
 
@@ -161,12 +161,12 @@ public class Monitoramento extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMaxCPU)
+                                    .addComponent(lblMaximoCPU)
                                     .addComponent(lblMdCPU)
                                     .addComponent(lblMinCPU))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblMaxCPUvalor)
+                                    .addComponent(lblMaxCPU)
                                     .addComponent(lblMdCPUvalor, javax.swing.GroupLayout.Alignment.TRAILING)))
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(lblMinMemoria)
@@ -203,7 +203,7 @@ public class Monitoramento extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(barCPU, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(lblMaxCPU)
+                            .addComponent(lblMaximoCPU)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblMinCPU)
@@ -212,7 +212,7 @@ public class Monitoramento extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(lblMdCPU)
                                 .addComponent(lblMdCPUvalor))))
-                    .addComponent(lblMaxCPUvalor))
+                    .addComponent(lblMaxCPU))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -267,6 +267,8 @@ public class Monitoramento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeituraActionPerformed
+        
+        // sorteio de valores da CPU
         Double sorteioCPU, sorteioMemoria, sorteioDisco;
         cliquesNoBotao++;
         sorteioCPU = sortear.nextDouble() * 3;
@@ -275,13 +277,37 @@ public class Monitoramento extends javax.swing.JFrame {
         }
         System.out.println("Valor da CPU: " + sorteioCPU);
 
+        // sorteio de valores da Memoria
         sorteioMemoria = sortear.nextDouble() * 8;
 
         if (sorteioMemoria > 7.9) {
             sorteioMemoria = 7.9;
         }
         System.out.println("Valor da Memoria: " + sorteioMemoria);
+        
+        // sorteio de Disco
+        sorteioDisco = sortear.nextDouble() * 466.00;
+        System.out.println("Valor da Disco: " + sorteioDisco);
 
+        // definindo valores da CPU
+        if (valorMaximoCPU == 0.0) {
+            valorMaximoCPU = sorteioCPU;
+        } else {
+            if (sorteioCPU > valorMaximoCPU) {
+                valorMaximoCPU = sorteioCPU;
+            }
+        }
+        if (valorMinimoCPU == 0.0) {
+            valorMinimoCPU = sorteioCPU;
+        } else {
+            if (sorteioCPU < valorMinimoCPU) {
+                if (sorteioMemoria == 0.0) {
+                    sorteioMemoria = 0.1;
+                }
+                valorMinimoCPU = sorteioCPU;
+            }
+        }
+        // definindo valores da Memoria
         if (valorMaximoMemoria == 0.0) {
             valorMaximoMemoria = sorteioMemoria;
         } else {
@@ -299,7 +325,8 @@ public class Monitoramento extends javax.swing.JFrame {
                 valorMinimoMemoria = sorteioMemoria;
             }
         }
-        valorSomaMemoria +=sorteioMemoria;
+        // Exibindo valores de Memoria 
+        valorSomaMemoria += sorteioMemoria;
         valorMediaMemoria = valorSomaMemoria / cliquesNoBotao;
         System.out.println("Valor maximo da memoria" + valorMaximoMemoria);
         lblMaxMemoria.setText(String.format("%.1f GB", valorMaximoMemoria));
@@ -307,12 +334,27 @@ public class Monitoramento extends javax.swing.JFrame {
         System.out.println("Valor médio da memoria" + valorMediaMemoria);
         lblMdMemoria.setText(String.format("%.1f GB", valorMediaMemoria));
         Double porcentagem = (100.00 * sorteioMemoria / maximoMemoria);
-        System.out.println(String.format("Esse é a porcentagem: %f",porcentagem));
+        System.out.println(String.format("Esse é a porcentagem: %f", porcentagem));
         Integer porcentagemConvert = porcentagem.intValue();
-        barMemoria.setMinimum(0); 
-        barMemoria.setMaximum(100); 
+        barMemoria.setMinimum(0);
+        barMemoria.setMaximum(100);
         barMemoria.setValue(porcentagemConvert);
-        UIManager.put("nimbusOrange", new Color(201, 30, 56));
+        UIManager.put("nimbusOrange", new Color(0, 204, 0));
+        // Exibindo valorese de CPU
+        valorSomaCPU += sorteioCPU;
+        valorMediaCPU = valorSomaCPU / cliquesNoBotao;
+        System.out.println("Valor maximo da CPU" + valorMaximoCPU);
+        lblMaxCPU.setText(String.format("%.1f GB", valorMaximoCPU));
+        lblMinCPUvalor.setText(String.format("%.1f GB", valorMinimoCPU));
+        System.out.println("Valor médio da CPU" + valorMediaCPU);
+        lblMdCPUvalor.setText(String.format("%.1f GB", valorMediaCPU));
+        Double porcentagemCPU = (100.00 * sorteioCPU / maximoCPU);
+        System.out.println(String.format("Esse é a porcentagem: %f", porcentagemCPU));
+        Integer porcentagemConvertCPU = porcentagemCPU.intValue();
+        barCPU.setMinimum(0);
+        barCPU.setMaximum(100);
+        barCPU.setValue(porcentagemConvertCPU);
+        UIManager.put("nimbusOrange", new Color(0, 204, 0));
 
 // TODO add your handling code here:
     }//GEN-LAST:event_btnLeituraActionPerformed
@@ -375,9 +417,9 @@ public class Monitoramento extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblMaxCPU;
-    private javax.swing.JLabel lblMaxCPUvalor;
     private javax.swing.JLabel lblMaxDisco;
     private javax.swing.JLabel lblMaxMemoria;
+    private javax.swing.JLabel lblMaximoCPU;
     private javax.swing.JLabel lblMdCPU;
     private javax.swing.JLabel lblMdCPUvalor;
     private javax.swing.JLabel lblMdDisco;
