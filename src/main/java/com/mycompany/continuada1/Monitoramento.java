@@ -267,7 +267,7 @@ public class Monitoramento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLeituraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLeituraActionPerformed
-        
+
         // sorteio de valores da CPU
         Double sorteioCPU, sorteioMemoria, sorteioDisco;
         cliquesNoBotao++;
@@ -284,7 +284,7 @@ public class Monitoramento extends javax.swing.JFrame {
             sorteioMemoria = 7.9;
         }
         System.out.println("Valor da Memoria: " + sorteioMemoria);
-        
+
         // sorteio de Disco
         sorteioDisco = sortear.nextDouble() * 466.00;
         System.out.println("Valor da Disco: " + sorteioDisco);
@@ -325,6 +325,25 @@ public class Monitoramento extends javax.swing.JFrame {
                 valorMinimoMemoria = sorteioMemoria;
             }
         }
+
+        // definindo valores do Disco
+        if (valorMaximoDisco == 0.0) {
+            valorMaximoDisco = sorteioDisco;
+        } else {
+            if (sorteioDisco > valorMaximoDisco) {
+                valorMaximoDisco = sorteioDisco;
+            }
+        }
+        if (valorMinimoDisco == 0.0) {
+            valorMinimoDisco = sorteioDisco;
+        } else {
+            if (sorteioDisco < valorMinimoDisco) {
+                if (sorteioDisco == 0.0) {
+                    sorteioDisco = 0.1;
+                }
+                valorMinimoDisco = sorteioDisco;
+            }
+        }
         // Exibindo valores de Memoria 
         valorSomaMemoria += sorteioMemoria;
         valorMediaMemoria = valorSomaMemoria / cliquesNoBotao;
@@ -354,6 +373,21 @@ public class Monitoramento extends javax.swing.JFrame {
         barCPU.setMinimum(0);
         barCPU.setMaximum(100);
         barCPU.setValue(porcentagemConvertCPU);
+        UIManager.put("nimbusOrange", new Color(0, 204, 0));
+        // Exibindo valorese de Disco
+        valorSomaDisco += sorteioDisco;
+        valorMediaDisco = valorSomaDisco / cliquesNoBotao;
+        System.out.println("Valor maximo da CPU" + valorMaximoDisco);
+        lblMaxDisco.setText(String.format("%.1f GB", valorMaximoDisco));
+        lblMinDisco.setText(String.format("%.1f GB", valorMinimoDisco));
+        System.out.println("Valor médio da CPU" + valorMediaDisco);
+        lblMdDisco.setText(String.format("%.1f GB", valorMediaDisco));
+        Double porcentagemDisco = (100.00 * sorteioDisco / maximoDisco);
+        System.out.println(String.format("Esse é a porcentagem: %f", porcentagemDisco));
+        Integer porcentagemConvertDisco = porcentagemDisco.intValue();
+        barDisco.setMinimum(0);
+        barDisco.setMaximum(100);
+        barDisco.setValue(porcentagemConvertDisco);
         UIManager.put("nimbusOrange", new Color(0, 204, 0));
 
 // TODO add your handling code here:
